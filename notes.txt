@@ -1,0 +1,56 @@
+Components:
+- Home
+    Header
+    Sidebar
+    RecommendedVideos
+- Search Functionality (React Router)
+    > npm i react-router-dom
+    import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+    <Router>
+        <Switch>
+            <Route path='/search/:searchTerm'><h1>Search Page</h1></Route>
+            <Route path="/"><h1>Home Page</h1></Route>
+        </Switch>
+    </Router>
+
+    import { Link } from 'react-router-dom';
+    <Link to={`/search/${inputSearch}`}><SearchIcon className="header__inputButton" /></Link>
+
+    SearchPage component
+        - ChannelRow
+        - VideoRow
+        
+
+Props:
+    Way 1 (recommended - destructuring):
+        const VideoCard = ({ image, title, channel }) {  
+            return (
+                <div>
+                    <img src={image}/>
+                </div>
+            )
+        }
+
+    Way 2:
+        const VideoCard = (props) {  
+            return (
+                <div>
+                    <img src={props.image}/>
+                </div>
+            )
+        }
+
+    Way 3:
+        const VideoCard = (props) {  
+            const { image, title, channel } = props;
+            return (
+                <div>
+                    <img src={props.image}/>
+                </div>
+            )
+        }
+    
+State:
+    import React, { useState } from 'react';
+    const [inputSearch, setInputSearch] = useState('');
+    <input onChange={(e) => setInputSearch(e.target.value)} value={inputSearch} placeholder="Search" type="text"/>
